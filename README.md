@@ -14,7 +14,7 @@ The following is a (very) quick tech demo for using NW.JS to create a custom bro
 
 ## Current Screenshot: ##
 
-[coming after repo init]
+![Example](https://raw.githubusercontent.com/gdbate/nw.js-iframe-browser/master/example.png)
 
 ## Quick Links ##
 
