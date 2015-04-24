@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html style="border-radius:0px;">
+<head>
+	<title>Demo Browser</title>
+	<link type="text/css" rel="stylesheet" href="css/font-awesome.min.css"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="css/browser.css"  media="screen,projection"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+<body>
+
+	<nav><div id="top-bar">
+		<div id="window"><table class="menu"><tr>
+			<td class="btn">&nbsp;</td>
+			<td class="btn">&nbsp;</td> <!-- keep title centered -->
+			<td class="btn">&nbsp;</td>
+			<td><div id="title">Demo Browser</div></td>
+			<td class="btn"><div id="btn-hide"><i class="fa fa-minus"></i></div></td>
+			<td class="btn"><div id="btn-fullscreen"><i class="fa fa-arrows-alt" id="icon-fullscreen"></i></div></td>
+			<td class="btn"><div id="btn-close"><i class="fa fa-remove"></i></div></td>
+		</tr></table></div>
+		<div id="browser"><table class="menu"><tr>
+			<td class="btn"><div id="btn-back"><i class="fa fa-arrow-left"></i></div></td>
+			<td class="btn"><div id="btn-forward"><i class="fa fa-arrow-right"></i></div></td>
+			<td class="btn"><div id="btn-refresh"><i class="fa fa-refresh"></i></div></td>
+			<td class="btn"><div id="btn-home"><i class="fa fa-home"></i></div></td>
+			<td class="location"><input type="text" id="location"></td>
+			<td class="btn" id="btn-search"><div class="btn"><i class="fa fa-search"></i></div></td>
+		</tr></table></div>
+	</div></nav>
+
+  <div id="frame-container">
+  	<iframe id="frame" frameborder="0" marginheight="0" marginwidth="0" name="external" seamless="seamless" width="100%" scroll="auto" nwdisable nwfaketop src="about:blank"></iframe>
+  </div>
+
+	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="js/browser.js"></script>
+
+</body>
+</html>

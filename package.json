@@ -1,0 +1,22 @@
+{
+  "name": "Demo Browser",
+  "main": "app:///nowpaper/browser.html",
+  "version": "0.1.0",
+  "single-instance": true,
+  "window":{
+  	"title": "Demo Browser",
+  	"fullscreen": false,
+  	"icon": "img/browsermatic-icon.png",
+  	"resizable": true,
+    "show": false,
+    "show_in_taskbar": false,
+    "toolbar": false,
+    "frame": false
+  },
+	"maintainers":[{
+	   "name": "Greg Bate",
+	   "email": "gdbate@gmail.com",
+	   "web": "https://github.com/gdbate"
+	}],
+  "dependencies":{
+  }}
