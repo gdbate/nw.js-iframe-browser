@@ -22,6 +22,7 @@
 // I N I T
 	$(function(){
 		setup();
+		events();
 		show();
 		home();
 	});
@@ -77,13 +78,6 @@
 			location(this.contentWindow.location.href);
 			title(this.contentWindow.document.title);
 		}
-		//there has to be a better way?
-		var updateLocation=function(){
-			location(frame.contentWindow.location.href);
-			title(frame.contentWindow.document.title);
-			setTimeout(updateLocation,250);
-		}
-		updateLocation();
 		var resizeFrame=function(){
 			$('#frame').css('height',$('div#frame-container').height()-1);
 		}
@@ -93,6 +87,17 @@
 			resizeTimer=setTimeout(resizeFrame,15);
 		});
 		resizeFrame();
+	}
+
+	function events(){
+		win.on('document-start',function(frame){
+			if(frame.id=='frame'){
+				location(frame.contentWindow.location.href);
+				title(frame.contentWindow.document.title);
+			}
+		});
+		win.on('document-end',function(frame){
+		});
 	}
 
 	var currentLocation='';
@@ -109,7 +114,6 @@
 			$('#title').text(title);
 		}
 	}
-
 	function home(){
 		navigate(settings['home-url']);
 	}
