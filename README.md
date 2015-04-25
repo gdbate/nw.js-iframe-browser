@@ -23,3 +23,11 @@ The following is a (very) quick tech demo for using NW.JS to create a custom bro
 3. [frameless window info](https://github.com/nwjs/nw.js/wiki/Frameless-window)
 4. [iframe Information](https://github.com/nwjs/nw.js/wiki/Mini-browser-in-iframe)
 
+## Issues ##
+
+This is a work in progress to get the best experience possible using an iframe. There are still some issues to work out as well as some more time needed on implementing some basic functionality.
+
+1. haven't had time to get location bar entry working well.
+2. more testing and some more issues will pop up.
+3. multiple tab support?
+

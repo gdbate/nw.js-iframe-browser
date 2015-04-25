@@ -90,13 +90,17 @@
 	}
 
 	function events(){
+		//when a page starts loading, update the url and title
 		win.on('document-start',function(frame){
 			if(frame.id=='frame'){
 				location(frame.contentWindow.location.href);
 				title(frame.contentWindow.document.title);
 			}
 		});
-		win.on('document-end',function(frame){
+		//make sure links that target only open in the main window.
+		//Would be good to get multiple tabs and add support here.
+		win.on('new-win-policy',function(frame,url,policy){
+			policy.forceCurrent();
 		});
 	}
 
