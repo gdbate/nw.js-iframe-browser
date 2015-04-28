@@ -2,7 +2,9 @@
 
 	var gui=require('nw.gui');
 	var win=gui.Window.get();
-	//win.showDevTools();
+	win.showDevTools();
+
+	var urlParser=require('./js/url');
 
 	var settings={
 		'home-url':'http://google.com',
@@ -89,7 +91,8 @@
 
 		//update the location & title when a page completely loads (might already be done)
 		frame.addEventListener('load',function(){
-			location(this.contentWindow.location.href);
+			var url=this.contentWindow.location.href;
+			location(url);
 			title(this.contentWindow.document.title);
 			var links=frame.contentWindow.document.getElementsByTagName('a');
 			for(var i=0;i<links.length;i++){
@@ -97,7 +100,8 @@
         link.onclick=function(e){
         	if(e.ctrlKey||e.shiftKey){
         		//prevent click from removing iframe
-        		navigate(this.getAttribute('href'));
+        		var parsed=urlParser(this.getAttribute('href'),url);
+        		navigate(parsed);
         		e.preventDefault();
         		return false;
         	}
