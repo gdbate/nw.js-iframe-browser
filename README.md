@@ -1,16 +1,16 @@
 # nw.js-iframe-browser
 
-The following is a (very) quick tech demo for using NW.JS to create a custom browser. Iframes are ideal since you can remove the node privileges and also no allow frame breakers to remove the frame. This would be a good starting point if you are looking to make a browser.
+NW.JS comes with a toolbar that has some browser functionality to start with. But what if you want to customize the UI and keep node scripts separate from the websites? I have distilled this project down to a simple browser in order to try and resolve some of the issues with making a browser out of an iframe. 
 
 #### It uses the following NW.JS Features: ####
 
-- Frameless Window
+- frameless window
 - iframes with:
 	1. custom user agent
 	2. fake top (no frame breaking)
 	3. no node.js privileges
-- System tray icon with menu
-- Custom UI
+- system tray icon with menu
+- custom UI
 
 ## Current Screenshot: ##
 
@@ -25,11 +25,12 @@ The following is a (very) quick tech demo for using NW.JS to create a custom bro
 
 ## Issues ##
 
-This is a work in progress to get the best experience possible using an iframe. There are still some issues to work out as well as some more time needed on implementing some basic functionality.
-
 - haven't had time to get location bar entry working well.
 - have a search engine setting
 - more testing and some more issues will crop up.
 - multiple tab support?
 - Remember window location on restart
 - disabled back/forward buttons if no ability to do so
+
+(probably lots not listed)
+ 

@@ -2,7 +2,7 @@
 
 	var gui=require('nw.gui');
 	var win=gui.Window.get();
-//	win.showDevTools();
+	//win.showDevTools();
 
 	var settings={
 		'home-url':'http://google.com',
@@ -15,7 +15,7 @@
 	new Tray(gui,'Demo Browser','img/browsermatic-icon.png','Click to open Browser')
 		.click(function(){show();})
 		.add('Show Browser',function(){show();})
-		.add('Console',function(){win.showDevTools();})
+		.add('Developer Console',function(){win.showDevTools();})
 		.separator()
 		.add('Exit',function(){gui.App.quit();})
 
@@ -88,21 +88,40 @@
 		var frame=$('#frame').attr('nwUserAgent',settings['user-agent']).get(0);
 
 		//update the location & title when a page completely loads (might already be done)
-		frame.onload=function(){
+		frame.addEventListener('load',function(){
 			location(this.contentWindow.location.href);
 			title(this.contentWindow.document.title);
-		}
+			var links=frame.contentWindow.document.getElementsByTagName('a');
+			for(var i=0;i<links.length;i++){
+				var link=links[i];
+        link.onclick=function(e){
+        	if(e.ctrlKey||e.shiftKey){
+        		//prevent click from removing iframe
+        		navigate(this.getAttribute('href'));
+        		e.preventDefault();
+        		return false;
+        	}
+          return true;
+        };
+			};
+		});
 
 		//when a page starts loading, update the url and title
 		win.on('document-start',function(frame){
-			if(frame.id=='frame'){
-				location(frame.contentWindow.location.href);
-				title(frame.contentWindow.document.title);
+			if(frame&&typeof frame=='object'){
+				if(frame.id=='frame'){
+					location(frame.contentWindow.location.href);
+					title(frame.contentWindow.document.title);
+				}
+			}else{
+				console.log('- Frame breaker');
+
 			}
 		});
 		//make sure links that target only open in the main window.
 		//Would be good to get multiple tabs and add support here.
 		win.on('new-win-policy',function(frame,url,policy){
+			console.log('new-win-policy',frame,url,policy);
 			policy.forceCurrent();
 		});
 
@@ -130,9 +149,10 @@
 	//set the title if it changes
 	var currentTitle='';
 	function title(title){
+		win.title=title;
 		if(title!=currentTitle){
-			currentTitle=title;
 			$('#title').text(title);
+			currentTitle=title;
 		}
 	}
 
@@ -161,5 +181,11 @@
 		win.hide();
 		settings.shown=false;
 	}
+
+function CheckIsValidDomain(domain){
+	var re=new RegExp(/^((?:(?:(?:\w[\.\-\+]?)*)\w)+)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})$/);
+	return domain.match(re)?true:false;
+}
+
 
 }());
